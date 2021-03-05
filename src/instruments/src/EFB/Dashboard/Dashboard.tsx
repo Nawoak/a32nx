@@ -1,25 +1,14 @@
 import React from 'react';
 import { CurrentFlight, Map } from '@flybywiresim/map';
 import FlightWidget from './Widgets/FlightWidget';
-import WeatherWidget from './Widgets/WeatherWidget';
+// import WeatherWidget from './Widgets/WeatherWidget';
 import { useSimVar } from '../../Common/simVars';
+import WeatherWidget from './Widgets/WeatherWidget';
+import { SimbriefData } from '../Efb';
 
 type DashboardProps = {
-    currentFlight: string,
-    airline: string,
-    flightNum: string,
-    aircraftReg: string,
-    departingAirport: string,
-    depIata: string,
-    arrivingAirport: string,
-    arrIata: string,
-    flightDistance: string,
-    flightETAInSeconds: string,
-    timeSinceStart: string,
-    schedOut: string,
-    schedIn: string,
+    simbriefData: SimbriefData,
     fetchSimbrief: Function,
-    route: string
 }
 
 const Dashboard: React.FC<DashboardProps> = (props) => {
@@ -56,42 +45,30 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     });
 
     return (
-        <div className="flex p-6 w-full">
-            <div className="w-4/12 mr-4">
-                <h1 className="text-white font-medium mb-4 text-2xl">Today's Flight</h1>
-
+        <div className="w-full">
+            <h1 className="text-3xl pt-6 text-white">Dashboard</h1>
+            <div className="flex w-full mt-6 h-efb">
                 <FlightWidget
-                    name="todays"
-                    airline={props.airline}
-                    flightNum={props.flightNum}
-                    aircraftReg={props.aircraftReg}
-                    dep={props.departingAirport}
-                    depIata={props.depIata}
-                    arrIata={props.arrIata}
-                    arr={props.arrivingAirport}
-                    route={props.route}
-                    distance={props.flightDistance}
-                    // @ts-ignore
-                    eta={calculateFlightTime(props.flightETAInSeconds)}
-                    timeSinceStart={props.timeSinceStart}
-                    sta={props.schedIn}
-                    std={props.schedOut}
+                    simbriefData={props.simbriefData}
                     fetchSimbrief={props.fetchSimbrief}
                 />
-            </div>
 
-            <div className="w-3/12">
-                <h1 className="text-white font-medium mb-4 text-2xl">Weather</h1>
+                <div className="flex flex-col w-3/5">
+                    <div className="h-2/5 bg-navy-lighter rounded-2xl ml-3 mb-3 shadow-lg p-6">
+                        <div className="h-full flex items-center">
+                            <div className="w-1/2">
+                                <WeatherWidget name="origin" editIcao="yes" cardRight={false} icao={props.simbriefData.departingAirport} />
+                            </div>
+                            <div className="border border-gray-500 rounded-full h-48" />
+                            <div className="w-1/2">
+                                <WeatherWidget name="origin" editIcao="yes" cardRight icao={props.simbriefData.arrivingAirport} />
+                            </div>
+                        </div>
+                    </div>
 
-                <WeatherWidget name="origin" editIcao="yes" icao={props.departingAirport} />
-                <WeatherWidget name="dest" editIcao="yes" icao={props.arrivingAirport} />
-            </div>
-
-            <div className="w-5/12 ml-4">
-                <h1 className="text-white font-medium mb-4 text-2xl">Map</h1>
-
-                <div className="w-full h-map rounded-lg overflow-hidden">
-                    <Map currentFlight={handleGettingCurrentFlightData} disableMenu hideOthers />
+                    <div className="h-3/5 ml-3 mt-3 rounded-2xl overflow-hidden shadow-lg">
+                        <Map currentFlight={handleGettingCurrentFlightData} disableMenu hideOthers />
+                    </div>
                 </div>
             </div>
         </div>
