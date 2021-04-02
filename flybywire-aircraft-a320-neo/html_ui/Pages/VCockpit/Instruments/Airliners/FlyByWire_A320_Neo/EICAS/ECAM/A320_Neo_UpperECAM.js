@@ -2591,25 +2591,25 @@ var A320_Neo_UpperECAM;
                     switch (handleIndex) {
                         case 1:
                         {
-                            if (flapsAngle > 9.99) {
-                                this.currentStateText.textContent = "1+F";
-                            } else {
-                                this.currentStateText.textContent = "1";
-                                flapsTargetIndex = 0;
-                            }
+                            this.currentStateText.textContent = "1";
                             break;
                         }
                         case 2:
                         {
-                            this.currentStateText.textContent = "2";
+                            this.currentStateText.textContent = "1+F";
                             break;
                         }
                         case 3:
                         {
-                            this.currentStateText.textContent = "3";
+                            this.currentStateText.textContent = "2";
                             break;
                         }
                         case 4:
+                        {
+                            this.currentStateText.textContent = "3";
+                            break;
+                        }
+                        case 5:
                         {
                             this.currentStateText.textContent = "FULL";
                             break;
