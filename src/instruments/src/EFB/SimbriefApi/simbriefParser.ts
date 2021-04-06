@@ -1,4 +1,4 @@
-import { ISimbriefData } from './simbriefInterface';
+import { ISimbriefData, EmptyISimbriefData } from './simbriefInterface';
 
 const simbriefApiUrl: URL = new URL('https://www.simbrief.com/api/xml.fetcher.php');
 const simbriefApiParams = simbriefApiUrl.searchParams;

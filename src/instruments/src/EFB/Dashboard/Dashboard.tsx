@@ -19,20 +19,6 @@ const Dashboard: React.FC<DashboardProps> = (props) => {
     const [latitude] = useSimVar('PLANE LATITUDE', 'degree latitude', 500);
     const [longitude] = useSimVar('PLANE LONGITUDE', 'degree longitude', 500);
 
-    const calculateFlightTime = (flightETAInSeconds: string): string => {
-        const timeInMinutes: number = parseInt(flightETAInSeconds) * 0.0166;
-        if (timeInMinutes.toString() === 'NaN') {
-            return '00:00';
-        }
-
-        const hours = (timeInMinutes / 60);
-        const roundedHours = Math.floor(hours);
-        const minutes = (hours - roundedHours) * 60;
-        const roundedMinutes = Math.round(minutes);
-
-        return `${(roundedHours <= 9 ? '0' : '') + roundedHours}:${roundedMinutes <= 9 ? '0' : ''}${roundedMinutes}`;
-    };
-
     const handleGettingCurrentFlightData = (): CurrentFlight => ({
         flightNumber,
         aircraftType,

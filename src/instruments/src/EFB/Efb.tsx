@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Provider } from 'react-redux';
 import store from './Store';
@@ -13,6 +13,7 @@ import ToolBar from './ToolBar/ToolBar';
 import Dashboard from './Dashboard/Dashboard';
 import Dispatch from './Dispatch/Dispatch';
 import Ground from './Ground/Ground';
+import Performance from './Performance/Performance';
 import Navigation from './Navigation/Navigation';
 import Settings from './Settings/Settings';
 
@@ -219,15 +220,15 @@ const Efb = () => {
         case 2:
             return <Ground />;
         case 3:
+            return <Performance />;
+        case 4:
+            return <Navigation />;
+        case 5:
             return (
                 <div className="w-full h-full">
                     <p className="text-white font-medium mt-6 ml-4 text-3xl">Inop.</p>
                 </div>
             );
-        case 4:
-            return <Navigation />;
-        case 5:
-            return <Performance />;
         case 6:
             return <Settings simbriefUsername={simbriefUsername} setSimbriefUsername={setSimbriefUsername} />;
         default:
