@@ -1,8 +1,8 @@
-name: autopilot
+name: experimental
 on:
   push:
     branches:
-      - autopilot
+      - experimental
 
 jobs:
   build:
@@ -10,8 +10,8 @@ jobs:
     if: github.repository_owner == 'flybywiresim'
     runs-on: ubuntu-latest
     env:
-      MASTER_ZIP_NAME: A32NX-master-cfbw-cap.zip
-      BUILD_DIR_NAME: vmaster-cfbw-cap
+      MASTER_ZIP_NAME: A32NX-experimental.zip
+      BUILD_DIR_NAME: experimental
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
