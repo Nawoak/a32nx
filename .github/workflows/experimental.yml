@@ -31,7 +31,7 @@ jobs:
         env:
           BUNNY_BUCKET_PASSWORD: ${{ secrets.BUNNY_BUCKET_PASSWORD }}
           BUNNY_SECRET_TOKEN: ${{ secrets.BUNNY_SECRET_TOKEN }}
-          BUNNY_BUCKET_DESTINATION: addons/a32nx/cfbw-cap
+          BUNNY_BUCKET_DESTINATION: addons/a32nx/experimental
         run: ./scripts/cdn.sh $BUNNY_BUCKET_DESTINATION
       - name: Upload to DigitalOcean CDN
         uses: LibreTexts/do-space-sync-action@master
